@@ -44,15 +44,23 @@ TASKMANAGERSPRIH/
 
 ## 💻 Run Instructions
 
-Open your terminal in the project root directory and run:
+### 1️⃣ Compile the Application
 
-### 1️⃣ Compile the Java files
+To compile the application source files, run:
 
 ```bash
-javac -d out src/model/*.java src/service/*.java src/exception/*.java src/main/*.java
+javac -cp "lib/*" -d out src/**/*.java
 ```
 
-### 2️⃣ Run the application
+### 2️⃣ Compile the Tests
+
+To compile the test files along with the application source files, run:
+
+```bash
+javac -cp "lib/*" -d out src/**/*.java test/**/*.java
+```
+
+### 3️⃣ Run the Application
 
 ```bash
 java -cp out main.TaskManagerApp
@@ -62,6 +70,20 @@ java -cp out main.TaskManagerApp
 
 === Task Manager ===
 Options: [1] Create [2] Update [3] Delete [4] List [5] Exit
+
+---
+
+### 🧪 Run Tests
+
+To execute the unit tests, ensure you have the JUnit platform console standalone jar in the `lib/` directory. Then run:
+
+```bash
+java -jar lib/junit-platform-console-standalone-1.13.1.jar \
+  --class-path out \
+  --select-class TaskServiceTest
+```
+
+✅ You will see test results indicating the success or failure of each test case.
 
 ---
 

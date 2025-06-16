@@ -36,4 +36,8 @@ public class TaskService {
                                 Optional<LocalDate> from, Optional<LocalDate> to) {
         return TaskFilter.filterTasks(new ArrayList<>(repository.findAll()), status, priority, from, to);
     }
+
+    public Task getTaskById(String id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
+    }
 }
