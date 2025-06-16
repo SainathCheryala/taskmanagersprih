@@ -29,6 +29,8 @@ TASKMANAGERSPRIH/
 │   ├── model/               # Task model classes
 │   ├── service/             # Business logic and services
 │   ├── exception/           # Custom exceptions
+│   ├── repository/          # Data access layer
+│   ├── util/                # Utility classes
 │   └── main/                # Application entry point
 │
 ├── test/                    # Unit and integration tests
