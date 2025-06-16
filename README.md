@@ -73,6 +73,31 @@ Options: [1] Create [2] Update [3] Delete [4] List [5] Exit
 
 ---
 
+### 🌐 REST API
+
+The application provides a REST API interface. After running the application, the API will be available at:
+
+```
+http://localhost:8080/tasks
+```
+
+#### Endpoints
+
+- `GET /tasks`: List all tasks
+- `POST /tasks`: Create a new task
+
+#### Example: Create a Task
+
+Use `curl` or a browser to create a task by passing parameters in the URL:
+
+```bash
+curl -X POST "http://localhost:8080/tasks?title=NewTask&description=TaskDescription&dueDate=2023-12-31&priority=HIGH&status=PENDING"
+```
+
+This will create a new task and return its details.
+
+---
+
 ### 🧪 Run Tests
 
 To execute the unit tests, ensure you have the JUnit platform console standalone jar in the `lib/` directory. Then run:

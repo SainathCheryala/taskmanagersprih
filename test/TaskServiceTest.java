@@ -70,4 +70,19 @@ public class TaskServiceTest {
     public void testDeleteNonExistentTask() {
         assertThrows(RuntimeException.class, () -> service.deleteTask("invalid-id"));
     }
+
+    @Test
+    public void testCreateTaskWithNullTitle() {
+        assertThrows(IllegalArgumentException.class, () -> 
+            service.createTask(null, "Description", LocalDate.now(), Priority.HIGH, Status.PENDING)
+        );
+    }
+
+    @Test
+    public void testListTasksSortedByPriorityDescending() {
+        service.createTask("Task1", "Desc1", LocalDate.now(), Priority.LOW, Status.COMPLETED);
+        service.createTask("Task2", "Desc2", LocalDate.now(), Priority.HIGH, Status.PENDING);
+        var results = service.listTasks(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of("priority"), Optional.of("desc"));
+        assertEquals(Priority.HIGH, results.get(0).getPriority());
+    }
 }
