@@ -40,7 +40,7 @@ public class TaskServiceTest {
     public void testListTasksWithFilter() {
         service.createTask("T1", "", LocalDate.now(), Priority.LOW, Status.COMPLETED);
         service.createTask("T2", "", LocalDate.now(), Priority.HIGH, Status.PENDING);
-        var results = service.listTasks(Optional.of(Status.COMPLETED), Optional.empty(), Optional.empty(), Optional.empty());
+        var results = service.listTasks(Optional.of(Status.COMPLETED), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         assertEquals(1, results.size());
     }
 
@@ -55,7 +55,7 @@ public class TaskServiceTest {
     public void testListTasksWithoutFilter() {
         service.createTask("Task1", "Desc1", LocalDate.now(), Priority.LOW, Status.COMPLETED);
         service.createTask("Task2", "Desc2", LocalDate.now(), Priority.HIGH, Status.PENDING);
-        var results = service.listTasks(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        var results = service.listTasks(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         assertEquals(2, results.size());
     }
 

@@ -23,9 +23,20 @@ public class TaskManagerApp {
                     String title = scanner.nextLine();
                     System.out.print("Enter description: ");
                     String desc = scanner.nextLine();
-                    System.out.print("Enter due date (YYYY-MM-DD): ");
-                    String dateInput = scanner.nextLine();
-                    LocalDate due = dateInput.isEmpty() ? null : LocalDate.parse(dateInput);
+                    LocalDate due = null;
+                    while (true) {
+                        System.out.print("Enter due date (YYYY-MM-DD): ");
+                        String dateInput = scanner.nextLine();
+                        if (dateInput.isEmpty()) {
+                            break;
+                        }
+                        try {
+                            due = LocalDate.parse(dateInput);
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                        }
+                    }
                     System.out.print("Enter priority (LOW/MEDIUM/HIGH): ");
                     Priority p = Priority.valueOf(scanner.nextLine().toUpperCase());
                     Task task = service.createTask(title, desc, due, p, Status.PENDING);
@@ -38,9 +49,20 @@ public class TaskManagerApp {
                     String newTitle = scanner.nextLine();
                     System.out.print("New description: ");
                     String newDesc = scanner.nextLine();
-                    System.out.print("New due date (YYYY-MM-DD): ");
-                    String newDate = scanner.nextLine();
-                    LocalDate newDue = newDate.isEmpty() ? null : LocalDate.parse(newDate);
+                    LocalDate newDue = null;
+                    while (true) {
+                        System.out.print("New due date (YYYY-MM-DD): ");
+                        String newDate = scanner.nextLine();
+                        if (newDate.isEmpty()) {
+                            break;
+                        }
+                        try {
+                            newDue = LocalDate.parse(newDate);
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                        }
+                    }
                     System.out.print("New priority: ");
                     Priority newPriority = Priority.valueOf(scanner.nextLine().toUpperCase());
                     System.out.print("New status: ");
@@ -55,8 +77,12 @@ public class TaskManagerApp {
                     System.out.println("Deleted.");
                     break;
                 case "4":
+                    System.out.print("Sort by (duedate/priority): ");
+                    String sortBy = scanner.nextLine();
+                    System.out.print("Sort order (asc/desc): ");
+                    String sortOrder = scanner.nextLine();
                     System.out.println("Listing all tasks:");
-                    service.listTasks(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty())
+                    service.listTasks(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(sortBy), Optional.of(sortOrder))
                             .forEach(System.out::println);
                     break;
                 case "5":

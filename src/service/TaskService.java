@@ -33,8 +33,8 @@ public class TaskService {
     }
 
     public List<Task> listTasks(Optional<Status> status, Optional<Priority> priority,
-                                Optional<LocalDate> from, Optional<LocalDate> to) {
-        return TaskFilter.filterTasks(new ArrayList<>(repository.findAll()), status, priority, from, to);
+                                Optional<LocalDate> from, Optional<LocalDate> to, Optional<String> sortBy, Optional<String> sortOrder) {
+        return TaskFilter.filterTasks(new ArrayList<>(repository.findAll()), status, priority, from, to, sortBy, sortOrder);
     }
 
     public Task getTaskById(String id) {
